@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ism va 3 ta son</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 40px; 
+            line-height: 1.6;
+        }
+        .success { 
+            color: green; 
+            background: #e8f5e9; 
+            padding: 20px; 
+            border-radius: 8px; 
+            border: 2px solid green;
+            max-width: 600px;
+        }
+        .error { 
+            color: red; 
+            background: #ffebee; 
+            padding: 20px; 
+            border-radius: 8px; 
+            border: 2px solid red;
+            max-width: 600px;
+        }
+        input {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .result-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Ism va 3 ta son</h2>
+
+    {% if res is not none %}
+        {% if res|length == 1 and res[0] == "Ma'lumotlar noto'g'ri kiritildi" %}
+            <div class="error">
+                ❌ {{ res[0] }}
+            </div>
+        {% else %}
+            <div class="success">
+                <h3>✅ Muvaffaqiyatli hisoblandi!</h3>
+                <p><strong>Ism:</strong> {{ res[0] }}</p>
+                
+                <div class="result-box">
+                    <p><strong>1-son (a):</strong> {{ res[1] }}</p>
+                    <p><strong>2-son (b):</strong> {{ res[2] }}</p>
+                    <p><strong>3-son (c):</strong> {{ res[3] }}</p>
+                    <hr>
+                    <p><strong>Yig‘indisi (a + b + c):</strong> {{ res[4] }}</p>
+                    <p><strong>O‘rtacha arifmetik:</strong> {{ res[5] }}</p>
+                    <p><strong>Eng katta son:</strong> {{ res[6] }}</p>
+                    <p><strong>Eng kichik son:</strong> {{ res[7] }}</p>
+                </div>
+            </div>
+        {% endif %}
+        <hr>
+    {% endif %}
+
+    <form method="POST">
+        <input type="text" name="name" placeholder="Ism" required><br><br>
+        <input type="number" name="a" placeholder="1-son" required><br><br>
+        <input type="number" name="b" placeholder="2-son" required><br><br>
+        <input type="number" name="c" placeholder="3-son" required><br><br>
+        <button type="submit">Yuborish</button>
+    </form>
+
+    <br>
+    <p>
+        <a href="/">Bosh sahifa</a> | 
+        <a href="/result1">1. Ism + Email</a> | 
+        <a href="/result2">2. Ism + 2 son</a> | 
+        <a href="/result3">3. Ism + Telefon</a> | 
+        <a href="/result4">4. Ism + Sana</a> | 
+        <a href="/result5">5. Email + Yosh</a> | 
+        <a href="/result6">6. Ism + Telefon + Yosh</a> | 
+        <a href="/result7">7. Sana + Email</a>
+    </p>
+</body>
+</html>
